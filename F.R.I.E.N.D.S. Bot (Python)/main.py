@@ -12,7 +12,7 @@ def check_server(ip, port):
         return False
 
 # Carregar variáveis de ambiente
-TOKEN = os.getenv('TOKEN', 'MTI2MzcwNTUyNTE1MDAyNzc4OA.G1Jlke.nHnMaJfbzbpGvjx7QeaveCKgS5WpXfrrRZeV9c')
+TOKEN = os.getenv('TOKEN', 'MTI2MzcwNTUyNTE1MDAyNzc4OA.G996cI.CyKW5m60hXZCM_b0f9uxw0JS7pHPme2nI8GahI')
 GUILD_ID = int(os.getenv('GUILD_ID', '1037902632523681812'))
 SERVER_IP = '26.42.12.232'
 SERVER_PORT = 25565
