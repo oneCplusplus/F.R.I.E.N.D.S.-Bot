@@ -8,12 +8,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Função para verificar o status do servidor
+
+
 def check_server(ip, port):
     try:
         with socket.create_connection((ip, port), timeout=5):
             return True
     except Exception:
         return False
+
 
 # Obter variáveis de ambiente
 TOKEN = os.getenv('TOKEN')
@@ -30,11 +33,13 @@ intents.message_content = True
 
 client = commands.Bot(command_prefix='/', intents=intents)
 
+
 @client.event
 async def on_ready():
     print("Bot is ready!")
     await update_commands()
     update_status.start()  # Iniciar a tarefa de atualização de status
+
 
 async def update_commands():
     guild = discord.Object(id=GUILD_ID)
@@ -45,6 +50,7 @@ async def update_commands():
     except Exception as e:
         print(f'Failed to reload application commands: {e}')
 
+
 @tasks.loop(seconds=5)
 async def update_status():
     is_open = check_server(SERVER_IP, SERVER_PORT)
@@ -54,6 +60,7 @@ async def update_status():
         status_message = 'Servidor fechado ou inacessível'
     activity = discord.Game(name=status_message)
     await client.change_presence(activity=activity)
+
 
 @client.tree.command(name='server', description='Check the status of the Minecraft server')
 async def server(interaction: discord.Interaction):
